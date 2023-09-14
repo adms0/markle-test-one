@@ -13,6 +13,7 @@ import isEmail from 'validator/lib/isEmail';
 import AppLoading from '../../Components/AppLoading/index';
 // firebase hook
 import {useFirebase} from '../../Components/FirebaseProvider';
+import {useSnackbar} from 'notistack';
 
 const Register = () => {
   // import link from react-router-dom
@@ -35,6 +36,7 @@ const Register = () => {
 
   // call usefirebase
   const {auth, user, loading} = useFirebase();
+  const {enqueueSnackbar} = useSnackbar();
 
   const handleChange = (e) => {
     setForm({
@@ -78,6 +80,10 @@ const Register = () => {
       try {
         setSubmitting(true);
         await auth.createUserWithEmailAndPassword(form.email, form.password);
+        enqueueSnackbar(`User Has been Success to regist`, {
+          autoHideDuration: 1000,
+          variant: 'success',
+        });
       } catch (e) {
         const newError = {};
         switch (e.code) {

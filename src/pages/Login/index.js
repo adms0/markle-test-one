@@ -13,10 +13,10 @@ import isEmail from 'validator/lib/isEmail';
 import AppLoading from '../../Components/AppLoading/index';
 // firebase hook
 import {useFirebase} from '../../Components/FirebaseProvider';
+import {useSnackbar} from 'notistack';
 
 const Login = (props) => {
   const {location} = props;
-  // import link from react-router-dom
   const classes = useStyles();
   const [form, setForm] = useState({
     email: '',
@@ -34,6 +34,7 @@ const Login = (props) => {
 
   // call usefirebase
   const {auth, user, loading} = useFirebase();
+  const {enqueueSnackbar} = useSnackbar();
 
   const validate = () => {
     const newError = {...error};
@@ -69,6 +70,10 @@ const Login = (props) => {
       try {
         setSubmitting(true);
         await auth.signInWithEmailAndPassword(form.email, form.password);
+        enqueueSnackbar(`Login Success`, {
+          autoHideDuration: 1000,
+          variant: 'success',
+        });
       } catch (e) {
         const newError = {};
         console.log(e.code, '<<<<ecode');
