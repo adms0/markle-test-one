@@ -84,7 +84,7 @@ export default function CreateNewOrEditUserDialog(props) {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant="subtitle1" className={c.heading}>
-            Post Data
+            User Data
           </Typography>
         </Grid>
         <Grid item xs={12} lg={6}>

@@ -54,7 +54,7 @@ const UserDetail = (props) => {
           padding: '16px 24px',
         }}
       >
-        <Typography variant="h6">Detail Post</Typography>
+        <Typography variant="h6">Detail User</Typography>
         <IconButton
           aria-label="close"
           className={classes.closeButton}
@@ -175,7 +175,7 @@ const User = (props) => {
 
   const detailUser = (id) => {
     api
-      .get(`${url}/${id}`)
+      .get(`${url}users/${id}`)
       .then((res) => setStateDetail(res))
       .catch((err) => console.log(err));
   };
